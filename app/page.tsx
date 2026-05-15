@@ -1,5 +1,5 @@
-import Image from "next/image"
-import Link from "next/link"
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -7,7 +7,7 @@ export default function Home() {
       <div className="p-16 mx-auto max-w-3xl text-center">
         <Image
           src="/color/flowers/lily.png"
-          alt="lilyy" 
+          alt="lilyy"
           width={100}
           height={100}
           className="object-cover mx-auto mb-6"
@@ -21,8 +21,6 @@ export default function Home() {
           className="object-center mx-auto"
           priority
         />
-
-
         <p className="my-6 text-sm md:mb-6 md:-mt-6">
           beautiful flowers <br /> delivered digitally
         </p>
@@ -48,9 +46,7 @@ export default function Home() {
           </Link>
         </div>
 
-        <p className="mt-6 text-sm ">
-          made by keerthii
-        </p>
+        <p className="mt-6 text-sm ">made by keerthii</p>
       </div>
     </div>
   );
