@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div className="flex flex-col justify-center items-center p-4 min-h-screen font-mono uppercase">
-      <div className="p-16 mx-auto max-w-3xl text-center">
+      <div className="p-16 mx-auto max-w-5xl text-center">
         <Image
           src="/color/flowers/lily.png"
           alt="lilyy"
@@ -14,10 +14,10 @@ export default function Home() {
           priority
         />
         <Image
-          src="/digibouquet.png"
-          alt="digibouquet"
-          width={600}
-          height={400}
+          src="/digiflority.png"
+          alt="digiflority"
+          width={700}
+          height={200}
           className="object-center mx-auto"
           priority
         />
