@@ -27,5 +27,5 @@ export function calculateTotalFlowers(flowers: BouquetFlower[]): number {
 
 export function validateFlowerCount(flowers: BouquetFlower[]): boolean {
   const total = calculateTotalFlowers(flowers);
-  return total >= 6 && total <= 10;
+  return total >= 2 && total <= 10;
 }

@@ -34,7 +34,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="Digiflority" />
       </head>
       <body className="font-martian">
-        <TooltipProvider>{children}</TooltipProvider>
+        <TooltipProvider disableHoverableContent delayDuration={0}>{children}</TooltipProvider>
       </body>
     </html>
   );

@@ -7,7 +7,12 @@ import React, {
   ReactNode,
   useCallback,
 } from "react";
-import type { Bouquet, SetBouquet, Flower, CanvasFlower } from "@/types";
+import type {
+  Bouquet,
+  SetBouquet,
+  Flower,
+  CanvasFlower,
+} from "@/types";
 import {
   generateDefaultFlowerOrder,
   calculateTotalFlowers,
@@ -26,13 +31,12 @@ interface BouquetContextType {
 
 const BouquetContext = createContext<BouquetContextType | undefined>(undefined);
 
-export function BouquetProvide({
-  children,
-  mode,
-}: {
+interface BouquetProviderProps {
   children: ReactNode;
   mode: string;
-}) {
+}
+
+export function BouquetProvider({ children, mode }: BouquetProviderProps) {
   const [bouquet, setBouquet] = useState<Bouquet>({
     mode,
     flowers: [],
@@ -52,7 +56,7 @@ export function BouquetProvide({
       const existing = prev.flowers.find((f) => f.id === flower.id);
       const newFlowers = existing
         ? prev.flowers.map((f) =>
-            f.id === flower.id ? { ...f, ccount: f.count + 1 } : f,
+            f.id === flower.id ? { ...f, count: f.count + 1 } : f,
           )
         : [...prev.flowers, { id: flower.id, count: 1 }];
       return {
@@ -68,7 +72,7 @@ export function BouquetProvide({
     setBouquet((prev) => {
       const existing = prev.flowers.find((f) => f.id === flowerId);
       if (!existing) return prev;
-      const newFlower =
+      const newFlowers =
         existing.count <= 1
           ? prev.flowers.filter((f) => f.id !== flowerId)
           : prev.flowers.map((f) =>
@@ -76,8 +80,8 @@ export function BouquetProvide({
             );
       return {
         ...prev,
-        flowers: newFlower,
-        flowerOrder: generateDefaultFlowerOrder(newFlower),
+        flowers: newFlowers,
+        flowerOrder: generateDefaultFlowerOrder(newFlowers),
         canvasFlowers: null,
       };
     });
@@ -85,7 +89,11 @@ export function BouquetProvide({
 
   const setCanvasArrangement = useCallback(
     (flowers: CanvasFlower[], bg: string) => {
-      setBouquet((prev) => ({ ...prev, canvasFlowers: flowers, canvasBg: bg }));
+      setBouquet((prev) => ({
+        ...prev,
+        canvasFlowers: flowers,
+        canvasBg: bg,
+      }));
     },
     [],
   );
