@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useBouquet } from "@/context/bouquet-context";
 import FlowerPicker from "./stages/flower-picker";
+import BouquetCustomizer from "./stages/bouquet-customizer";
 
 const steps = ["Pick Flowers", "Arrange", "Write Card", "Share"];
 
@@ -65,7 +66,7 @@ export default function BouquetCreationFlow() {
       <div className="grow py-6">
         {currentStep === 0 && <FlowerPicker />}
         {currentStep === 1 && (
-          <p className="text-center">Arrange step coming soon...</p>
+          <BouquetCustomizer/>
         )}
         {currentStep === 2 && (
           <p className="text-center">Card step coming soon...</p>
