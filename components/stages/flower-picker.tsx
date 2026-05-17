@@ -96,23 +96,21 @@ export default function FlowerPicker() {
         ))}
       </div>
 
-      
-        <div className="flex flex-wrap gap-2 justify-center">
-          {Object.entries(selectedFlowersMap).map(([id, count]) => {
-            const flower = flowersData.find((f) => f.id === parseInt(id));
-            if (!flower) return null;
-            return (
-              <div
-                key={id}
-                className="px-3 py-1 text-sm rounded-xl border"
-                onClick={() => removeFlower(parseInt(id))}
-              >
-                {flower.name.toUpperCase()} x{count}
-              </div>
-            );
-          })}
-        </div>
-    
+      <div className="flex flex-wrap gap-2 justify-center">
+        {Object.entries(selectedFlowersMap).map(([id, count]) => {
+          const flower = flowersData.find((f) => f.id === parseInt(id));
+          if (!flower) return null;
+          return (
+            <div
+              key={id}
+              className="px-3 py-1 text-sm rounded-xl border"
+              onClick={() => removeFlower(parseInt(id))}
+            >
+              {flower.name.toUpperCase()} x{count}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
