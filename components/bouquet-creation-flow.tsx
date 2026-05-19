@@ -8,6 +8,7 @@ import { useBouquet } from "@/context/bouquet-context";
 import FlowerPicker from "./stages/flower-picker";
 import BouquetCustomizer from "./stages/bouquet-customizer";
 import CardWriter from "./stages/card-writer";
+import ShareBouquet from "./stages/share-bouquet";
 
 const steps = ["Pick Flowers", "Arrange", "Write Card", "Share"];
 
@@ -68,9 +69,7 @@ export default function BouquetCreationFlow() {
         {currentStep === 0 && <FlowerPicker />}
         {currentStep === 1 && <BouquetCustomizer />}
         {currentStep === 2 && <CardWriter />}
-        {currentStep === 3 && (
-          <p className="text-center">Share step coming soon...</p>
-        )}
+        {currentStep === 3 && <ShareBouquet />}
       </div>
 
       <div className="flex flex-row gap-4 justify-center m-auto pb-8">
