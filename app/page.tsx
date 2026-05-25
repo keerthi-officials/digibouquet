@@ -18,9 +18,8 @@
             alt="digiflority"
             width={600}
             height={250}
-            className="mx-auto"
+            className="mx-auto object-cover"
             priority
-            style={{ width: "auto", height: "auto" }}
           />
           <p className="my-6 text-sm md:mb-6 md:-mt-6">
             beautiful flowers <br /> delivered digitally
