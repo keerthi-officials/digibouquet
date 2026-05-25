@@ -172,6 +172,34 @@ export default function BouquetCanvas() {
     });
   }, []);
 
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (
+        e.target instanceof HTMLInputElement ||
+        e.target instanceof HTMLTextAreaElement
+      )
+        return;
+      if ((e.ctrlKey || e.metaKey) && e.key === "z") {
+        e.preventDefault();
+        undo();
+      }
+      if (e.key === "Delete" || e.key === "Backspace") {
+        if (selected) {
+          snap();
+          setPlaced((prev) => prev.filter((p) => p.uid !== selected));
+          setSelected(null);
+        }
+      }
+      if ((e.ctrlKey || e.metaKey) && e.key === "d") {
+        e.preventDefault();
+        if (selected) duplicateFlower(selected);
+      }
+      if (e.key === "Escape") setSelected(null);
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [selected, undo, snap]);
+
   const addFlower = useCallback(
     (flowerId: number, x?: number, y?: number) => {
       const fd = flowers.find((f) => f.id === flowerId);
@@ -224,21 +252,19 @@ export default function BouquetCanvas() {
     [snap],
   );
 
- const bringForward = useCallback((id: string) => {
-   setPlaced((prev) => {
-     const maxZ = Math.max(...prev.map((p) => p.zIndex));
+  const bringForward = useCallback((id: string) => {
+    setPlaced((prev) =>
+      prev.map((p) => (p.uid === id ? { ...p, zIndex: ++zCounter } : p)),
+    );
+  }, []);
 
-     return prev.map((p) => (p.uid === id ? { ...p, zIndex: maxZ + 1 } : p));
-   });
- }, []);
-
- const sendBack = useCallback((id: string) => {
-   setPlaced((prev) => {
-     const minZ = Math.min(...prev.map((p) => p.zIndex));
-
-     return prev.map((p) => (p.uid === id ? { ...p, zIndex: minZ - 1 } : p));
-   });
- }, []);
+  const sendBack = useCallback((id: string) => {
+    setPlaced((prev) =>
+      prev.map((p) =>
+        p.uid === id ? { ...p, zIndex: Math.max(1, p.zIndex - 10) } : p,
+      ),
+    );
+  }, []);
 
   const flipFlower = useCallback((id: string) => {
     setPlaced((prev) =>
@@ -279,7 +305,7 @@ export default function BouquetCanvas() {
       e.stopPropagation();
       e.currentTarget.setPointerCapture(e.pointerId);
       setSelected(id);
-      const p = placed.find((f) => f.uid == id);
+      const p = placed.find((f) => f.uid === id);
       if (!p) return;
       dragState.current = {
         uid: id,
@@ -368,7 +394,6 @@ export default function BouquetCanvas() {
   );
 
   const selectedFlower = placed.find((p) => p.uid === selected) ?? null;
-
   const paletteFlowers = flowers.filter((f) =>
     bouquet.flowers.some((bf) => bf.id === f.id),
   );

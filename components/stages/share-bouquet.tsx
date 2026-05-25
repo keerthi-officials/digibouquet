@@ -2,28 +2,33 @@
 
 import { useBouquet } from "@/context/bouquet-context";
 import { Bouquet as BouquetType } from "@/types";
-import { timestamp } from "drizzle-orm/gel-core";
 import { useRouter } from "next/navigation";
 import Bouquet from "../bouquet";
-import { Button } from "../ui/button";
+import { useEffect, useRef } from "react";
 
 export default function ShareBouquet() {
   const { bouquet } = useBouquet();
   const router = useRouter();
+  const bouquetRef = useRef(bouquet);
+
+  useEffect(() => {
+    bouquetRef.current = bouquet;
+  }, [bouquet]);
 
   const handleCreateBouquet = async (bouquet: BouquetType) => {
+    const latest = bouquetRef.current;
     const res = await fetch("/api/bouquets", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        mode: bouquet.mode,
-        flowers: bouquet.flowers,
-        letter: bouquet.letter,
-        greenery: bouquet.greenery,
-        flowerOrder: bouquet.flowerOrder,
-        timestamp: bouquet.timestamp,
-        canvasFlowers: bouquet.canvasFlowers ?? null,
-        canvasBg: bouquet.canvasBg ?? null,
+        mode: latest.mode,
+        flowers: latest.flowers,
+        letter: latest.letter,
+        greenery: latest.greenery,
+        flowerOrder: latest.flowerOrder,
+        timestamp: latest.timestamp,
+        canvasFlowers: latest.canvasFlowers ?? null,
+        canvasBg: latest.canvasBg ?? null,
       }),
     });
 
@@ -52,12 +57,12 @@ export default function ShareBouquet() {
 
       <Bouquet bouquet={bouquet} />
 
-      <Button
+      <button
         onClick={() => handleCreateBouquet(bouquet)}
-        className="mt-8 uppercase px-5 py-3"
+        className="mt-8 uppercase text-white bg-black px-5 py-3"
       >
         CREATE SHAREABLE LINK
-      </Button>
+      </button>
     </div>
   );
 }

@@ -36,8 +36,8 @@ function CanvasRenderer({ bouquet }: BouquetReadOnlyProps) {
         }}
       >
         <div
-          className="z-5 absolute bottom-5 left-1/2 -translate-x-1/2 pointer-events-none"
-          style={{ width: "30%" }}
+          className="absolute bottom-5 left-1/2 -translate-x-1/2 pointer-events-none"
+          style={{ zIndex: 5, width: "30%" }}
         >
           <Image
             src={`/${bouquet.mode}/bush/bush-${bouquet.greenery + 1}.png`}
@@ -56,11 +56,12 @@ function CanvasRenderer({ bouquet }: BouquetReadOnlyProps) {
             if (!fd) return null;
 
             const leftPct = (cf.x / CANVAS_W) * 100;
-            const topPct = (cf.x / CANVAS_H) * 100;
+            const topPct = (cf.y / CANVAS_H) * 100;
             const sizePct = (cf.size / CANVAS_W) * 100;
 
             return (
               <div
+                key={cf.uid}
                 className="absolute"
                 style={{
                   left: `${leftPct}%`,
@@ -162,7 +163,7 @@ function DefaultRenderer({ bouquet }: BouquetReadOnlyProps) {
 function LetterCard({ bouquet }: BouquetReadOnlyProps) {
   return (
     <div className="mx-auto max-w-sm text-sm text-center">
-      <div className="bg-white border-[1.5px] border-black p-8 mx-auto -translate-y-[50px] -rotate-2 hover:-rotate-2 transition-all duration-300">
+      <div className="bg-white border-[1.5px] border-black p-8 mx-auto -translate-y-12.5 -rotate-2 hover:-rotate-2 transition-all duration-300">
         <div className="space-y-4">
           <div className="flex flex-row gap-2 items-left justify-left">
             <p>Dear {bouquet.letter.recipient}</p>
