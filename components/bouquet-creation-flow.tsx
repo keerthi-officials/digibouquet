@@ -9,6 +9,7 @@ import FlowerPicker from "./stages/flower-picker";
 import BouquetCustomizer from "./stages/bouquet-customizer";
 import CardWriter from "./stages/card-writer";
 import ShareBouquet from "./stages/share-bouquet";
+import BouquetCanvas from "./stages/bouquet-canvas";
 
 const steps = ["Pick Flowers", "Arrange", "Write Card", "Share"];
 
@@ -67,7 +68,7 @@ export default function BouquetCreationFlow() {
 
       <div className="grow py-6">
         {currentStep === 0 && <FlowerPicker />}
-        {currentStep === 1 && <BouquetCustomizer />}
+        {currentStep === 1 && <BouquetCanvas />}
         {currentStep === 2 && <CardWriter />}
         {currentStep === 3 && <ShareBouquet />}
       </div>
