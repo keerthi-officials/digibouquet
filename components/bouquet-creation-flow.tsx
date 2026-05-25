@@ -15,6 +15,8 @@ const steps = ["Pick Flowers", "Arrange", "Write Card", "Share"];
 
 export default function BouquetCreationFlow() {
   const { bouquet, canProceed } = useBouquet();
+  const [advancedArrange, setAdvancedArrange] = useState(false);
+
   const [currentStep, setCurrentStep] = useState(0);
 
   const nextStep = () =>
@@ -68,7 +70,33 @@ export default function BouquetCreationFlow() {
 
       <div className="grow py-6">
         {currentStep === 0 && <FlowerPicker />}
-        {currentStep === 1 && <BouquetCanvas />}
+        {currentStep === 1 && (
+          <div className="flex flex-col gap-4">
+            <div className="flex justify-center gap-2">
+              <button
+                onClick={() => setAdvancedArrange(false)}
+                className={`text-xs px-4 py-2 uppercase tracking-widest border transition-all ${
+                  !advancedArrange
+                    ? "bg-black text-[#F5F5DC] border-black"
+                    : "border-stone-300 text-stone-500 hover:border-stone-500"
+                }`}
+              >
+                Simple
+              </button>
+              <button
+                onClick={() => setAdvancedArrange(true)}
+                className={`text-xs px-4 py-2 uppercase tracking-widest border transition-all ${
+                  advancedArrange
+                    ? "bg-black text-[#F5F5DC] border-black"
+                    : "border-stone-300 text-stone-500 hover:border-stone-500"
+                }`}
+              >
+                ✦ Advanced Arrange
+              </button>
+            </div>
+            {advancedArrange ? <BouquetCanvas /> : <BouquetCustomizer />}
+          </div>
+        )}
         {currentStep === 2 && <CardWriter />}
         {currentStep === 3 && <ShareBouquet />}
       </div>

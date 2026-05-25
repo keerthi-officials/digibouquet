@@ -20,7 +20,7 @@ export default function FlowerPicker() {
 
   return (
     <div className="h-full text-center">
-      <h2 className="mb-2 upeprcase text-md">Pick atleast 2 blooms</h2>
+      <h2 className="mb-2 upeprcase text-md">Pick atleast 6 blooms</h2>
 
       {totalFlowers > 0 && (
         <p className="mb-6 text-sm opacity-50">

@@ -141,13 +141,15 @@ function FlowerControls({
 }
 
 export default function BouquetCanvas() {
-  const { bouquet, setCanvasArrangement } = useBouquet();
   const canvasRef = useRef<HTMLDivElement>(null);
 
-  const [placed, setPlaced] = useState<CanvasFlower[]>([]);
+  const { bouquet, setCanvasArrangement, canvasFlowers, canvasBg } =
+    useBouquet();
+  const [placed, setPlaced] = useState<CanvasFlower[]>(() => canvasFlowers);
+  const [bg, setBg] = useState(() => canvasBg);
+
   const [selected, setSelected] = useState<string | null>(null);
   const [history, setHistory] = useState<CanvasFlower[][]>([]);
-  const [bg, setBg] = useState("#fdf6e3");
   const [isDragOver, setIsDragOver] = useState(false);
 
   const dragState = useRef<DragState | null>(null);

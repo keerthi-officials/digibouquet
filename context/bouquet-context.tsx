@@ -27,6 +27,8 @@ interface BouquetContextType {
   addFlower: (flower: Flower) => void;
   removeFlower: (flowerId: number) => void;
   setCanvasArrangement: (flowers: CanvasFlower[], bg: string) => void;
+  canvasFlowers: CanvasFlower[];
+  canvasBg: string;
 }
 
 const BouquetContext = createContext<BouquetContextType | undefined>(undefined);
@@ -108,6 +110,8 @@ export function BouquetProvider({ children, mode }: BouquetProviderProps) {
         addFlower,
         removeFlower,
         setCanvasArrangement,
+        canvasFlowers: bouquet.canvasFlowers ?? [],
+        canvasBg: bouquet.canvasBg ?? "#fdf6e3",
       }}
     >
       {children}
