@@ -5,7 +5,6 @@ import { flowers } from "@/data";
 import {
   Tooltip,
   TooltipContent,
-  TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { useBouquet } from "@/context/bouquet-context";
@@ -15,15 +14,15 @@ import type { Flower } from "@/types";
 const flowersData = flowers as Flower[];
 
 export default function FlowerPicker() {
-  const { bouquet, totalFlowers, addFlower, removeFlower } = useBouquet();
+  const { bouquet, addFlower, removeFlower } = useBouquet();
   const selectedFlowersMap = createFlowerCountMap(bouquet.flowers);
 
   return (
     <div className="h-full text-center">
-      <h2 className="mb-2 upeprcase text-md">Pick atleast 6 blooms</h2>
+      <h2 className="mb-2 uppercase text-md">Pick 6 to 10 BLOOMS</h2>
 
       <p className="mb-6 text-[10px] opacity-50">
-        Click on a flower's name to deselect
+        Click on a flower&apos;s name to deselect
       </p>
 
       <div className="flex flex-wrap justify-center gap-4 mb-6 items-center min-h-50">

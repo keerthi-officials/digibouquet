@@ -174,6 +174,24 @@ export default function BouquetCanvas() {
     });
   }, []);
 
+   const duplicateFlower = useCallback(
+     (id: string) => {
+       const src = placed.find((p) => p.uid === id);
+       if (!src) return;
+       snap();
+       const next: CanvasFlower = {
+         ...src,
+         uid: makeUid(),
+         x: src.x + 20,
+         y: src.y + 20,
+         zIndex: ++zCounter,
+       };
+       setPlaced((prev) => [...prev, next]);
+       setSelected(next.uid);
+     },
+     [placed, snap],
+   );
+
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (
@@ -227,23 +245,7 @@ export default function BouquetCanvas() {
     [snap],
   );
 
-  const duplicateFlower = useCallback(
-    (id: string) => {
-      const src = placed.find((p) => p.uid === id);
-      if (!src) return;
-      snap();
-      const next: CanvasFlower = {
-        ...src,
-        uid: makeUid(),
-        x: src.x + 20,
-        y: src.y + 20,
-        zIndex: ++zCounter,
-      };
-      setPlaced((prev) => [...prev, next]);
-      setSelected(next.uid);
-    },
-    [placed, snap],
-  );
+ 
 
   const deleteFlower = useCallback(
     (id: string) => {

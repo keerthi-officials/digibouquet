@@ -14,7 +14,7 @@ import BouquetCanvas from "./stages/bouquet-canvas";
 const steps = ["Pick Flowers", "Arrange", "Write Card", "Share"];
 
 export default function BouquetCreationFlow() {
-  const { bouquet, canProceed } = useBouquet();
+  const { canProceed } = useBouquet();
   const [advancedArrange, setAdvancedArrange] = useState(false);
 
   const [currentStep, setCurrentStep] = useState(0);
