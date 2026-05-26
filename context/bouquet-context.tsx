@@ -7,12 +7,7 @@ import React, {
   ReactNode,
   useCallback,
 } from "react";
-import type {
-  Bouquet,
-  SetBouquet,
-  Flower,
-  CanvasFlower,
-} from "@/types";
+import type { Bouquet, SetBouquet, Flower, CanvasFlower } from "@/types";
 import {
   generateDefaultFlowerOrder,
   calculateTotalFlowers,
@@ -111,7 +106,7 @@ export function BouquetProvider({ children, mode }: BouquetProviderProps) {
         removeFlower,
         setCanvasArrangement,
         canvasFlowers: bouquet.canvasFlowers ?? [],
-        canvasBg: bouquet.canvasBg ?? "#fdf6e3",
+        canvasBg: bouquet.canvasBg ?? "#f9f9ee",
       }}
     >
       {children}

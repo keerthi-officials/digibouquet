@@ -11,8 +11,8 @@ const CANVAS_H = 600;
 const VASE_W = 170;
 
 const BG_OPTIONS = [
-  { value: "#fdf6e3", label: "Cream" },
   { value: "#f9f9ee", label: "Paper" },
+  { value: "#fdf6e3", label: "Cream" },
   { value: "#0a0a0a", label: "Black" },
   { value: "#1a1a2e", label: "Midnight" },
   { value: "#2d1b1b", label: "Burgundy" },

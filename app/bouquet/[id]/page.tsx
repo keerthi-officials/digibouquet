@@ -26,7 +26,7 @@ export default async function BouquetPage(props: Params) {
         />
       </Link>
       <h2 className="text-lg mb-14">Hi, I made this bouquet for you!</h2>
-      <Bouquet bouquet={result.bouquet} /> 
+      <Bouquet bouquet={result.bouquet} />
       <p className="text-sm text-gray-500 mt-4">
         made with digiflority, a tool by keerthi
       </p>

@@ -22,11 +22,9 @@ export default function FlowerPicker() {
     <div className="h-full text-center">
       <h2 className="mb-2 upeprcase text-md">Pick atleast 6 blooms</h2>
 
-      {totalFlowers > 0 && (
-        <p className="mb-6 text-sm opacity-50">
-          Click on a flower's name to deselect
-        </p>
-      )}
+      <p className="mb-6 text-[10px] opacity-50">
+        Click on a flower's name to deselect
+      </p>
 
       <div className="flex flex-wrap justify-center gap-4 mb-6 items-center min-h-50">
         {flowersData.map((flower) => (
@@ -86,7 +84,7 @@ export default function FlowerPicker() {
             <TooltipContent
               side="bottom"
               sideOffset={8}
-              className="z-10 p-2 w-40 text-center"
+              className="z-10 p-2 w-40 text-center bg-[#f9f9ee]"
             >
               <h3 className="font-bold uppercase text-md">{flower.name}</h3>
               <p className="text-sm">{flower.meaning}</p>
